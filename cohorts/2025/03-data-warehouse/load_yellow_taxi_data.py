@@ -6,10 +6,10 @@ import time
 
 
 #Change this to your bucket name
-BUCKET_NAME = "dezoomcamp_hw3_2025"  
+BUCKET_NAME = "ny-rides-viktorija-bucket"  
 
 #If you authenticated through the GCP SDK you can comment out these two lines
-CREDENTIALS_FILE = "gcs.json"  
+CREDENTIALS_FILE = "/home/viktorija/data-engineering-zoomcamp/keys/ny-rides.json"  
 client = storage.Client.from_service_account_json(CREDENTIALS_FILE)
 
 
