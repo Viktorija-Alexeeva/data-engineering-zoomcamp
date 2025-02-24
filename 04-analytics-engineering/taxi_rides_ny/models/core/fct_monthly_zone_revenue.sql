@@ -1,12 +1,13 @@
 {{ config(materialized='table') }}
 
 with trips_data as (
-    select * from {{ ref('fact_trips') }}
+    select * from {{ ref('dim_taxi_trips') }}
 )
     select 
     -- Revenue grouping 
     pickup_zone as revenue_zone,
-    {{ dbt.date_trunc("month", "pickup_datetime") }} as revenue_month, 
+    pickup_year as revenue_year,
+    pickup_month as revenue_month, 
 
     service_type, 
 
@@ -26,4 +27,4 @@ with trips_data as (
     avg(trip_distance) as avg_monthly_trip_distance
 
     from trips_data
-    group by 1,2,3
+    group by 1,2,3,4
