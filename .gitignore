@@ -18,3 +18,4 @@ keys/ny-rides.json
 *.parquet
 *.csv.gz
 *.csv
+*.crc
