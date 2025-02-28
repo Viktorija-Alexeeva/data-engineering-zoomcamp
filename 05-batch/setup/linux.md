@@ -54,28 +54,28 @@ rm openjdk-11.0.2_linux-x64_bin.tar.gz
 ### Installing Spark
 
 
-Download Spark. Use 3.3.2 version:
+Download Spark. Use 3.5.5 version:
 
 ```bash
-wget https://archive.apache.org/dist/spark/spark-3.3.2/spark-3.3.2-bin-hadoop3.tgz
+wget https://archive.apache.org/dist/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz
 ```
 
 Unpack:
 
 ```bash
-tar xzfv spark-3.3.2-bin-hadoop3.tgz
+tar xzfv spark-3.5.5-bin-hadoop3.tgz
 ```
 
 Remove the archive:
 
 ```bash
-rm spark-3.3.2-bin-hadoop3.tgz
+rm spark-3.5.5-bin-hadoop3.tgz
 ```
 
 Add it to `PATH`:
 
 ```bash
-export SPARK_HOME="${HOME}/spark/spark-3.3.2-bin-hadoop3"
+export SPARK_HOME="${HOME}/spark/spark-3.5.5-bin-hadoop3"
 export PATH="${SPARK_HOME}/bin:${PATH}"
 ```
 
