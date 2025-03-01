@@ -11,7 +11,7 @@ gsutil -m cp -r pq/ gs://dtc_data_lake_de-zoomcamp-nytaxi/pq
 Download the jar for connecting to GCS to any location (e.g. the `lib` folder):
 
 ```bash
-gsutil cp gs://hadoop-lib/gcs/gcs-connector-hadoop3-2.2.5.jar
+gsutil cp gs://hadoop-lib/gcs/gcs-connector-hadoop3-2.2.5.jar gcs-connector-hadoop3-2.2.5.jar
 ```
 
 See the notebook with configuration in [09_spark_gcs.ipynb](09_spark_gcs.ipynb)
@@ -30,7 +30,7 @@ Creating a stand-alone cluster ([docs](https://spark.apache.org/docs/latest/spar
 Creating a worker:
 
 ```bash
-URL="spark://de-zoomcamp.europe-west1-b.c.de-zoomcamp-nytaxi.internal:7077"
+URL="spark://de-zoomcamp.europe-west1-b.c.ny-rides-viktorija.internal:7077"
 ./sbin/start-slave.sh ${URL}
 
 # for newer versions of spark use that:
@@ -55,7 +55,7 @@ python 06_spark_sql.py \
 Use `spark-submit` for running the script on the cluster
 
 ```bash
-URL="spark://de-zoomcamp.europe-west1-b.c.de-zoomcamp-nytaxi.internal:7077"
+URL="spark://de-zoomcamp.europe-west1-b.c.ny-rides-viktorija.internal:7077"
 
 spark-submit \
     --master="${URL}" \
@@ -64,6 +64,14 @@ spark-submit \
         --input_yellow=data/pq/yellow/2021/*/ \
         --output=data/report-2021
 ```
+
+Stop worker and master
+
+```bash
+./sbin/stop-worker.sh
+./sbin/stop-master.sh
+```
+
 
 ### Data Proc
 
