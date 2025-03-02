@@ -5,7 +5,7 @@
 Uploading data to GCS:
 
 ```bash
-gsutil -m cp -r pq/ gs://dtc_data_lake_de-zoomcamp-nytaxi/pq
+gsutil -m cp -r pq/ gs://ny-rides-viktorija-bucket/pq
 ```
 
 Download the jar for connecting to GCS to any location (e.g. the `lib` folder):
@@ -78,14 +78,14 @@ Stop worker and master
 Upload the script to GCS:
 
 ```bash
-TODO
+gsutil cp 06_spark_sql.py gs://ny-rides-viktorija-bucket/code/06_spark_sql.py
 ```
 
 Params for the job:
 
-* `--input_green=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/green/2021/*/`
-* `--input_yellow=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/yellow/2021/*/`
-* `--output=gs://dtc_data_lake_de-zoomcamp-nytaxi/report-2021`
+* `--input_green=gs://ny-rides-viktorija-bucket/pq/green/2021/*/`
+* `--input_yellow=gs://ny-rides-viktorija-bucket/pq/yellow/2021/*/`
+* `--output=gs://ny-rides-viktorija-bucket/report-2021`
 
 
 Using Google Cloud SDK for submitting to dataproc
@@ -94,12 +94,12 @@ Using Google Cloud SDK for submitting to dataproc
 ```bash
 gcloud dataproc jobs submit pyspark \
     --cluster=de-zoomcamp-cluster \
-    --region=europe-west6 \
-    gs://dtc_data_lake_de-zoomcamp-nytaxi/code/06_spark_sql.py \
+    --region=europe-west2 \
+    gs://ny-rides-viktorija-bucket/code/06_spark_sql.py \
     -- \
-        --input_green=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/green/2020/*/ \
-        --input_yellow=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/yellow/2020/*/ \
-        --output=gs://dtc_data_lake_de-zoomcamp-nytaxi/report-2020
+        --input_green=gs://ny-rides-viktorija-bucket/pq/green/2020/*/ \
+        --input_yellow=gs://ny-rides-viktorija-bucket/pq/yellow/2020/*/ \
+        --output=gs://ny-rides-viktorija-bucket/report-2020
 ```
 
 ### Big Query
@@ -107,7 +107,7 @@ gcloud dataproc jobs submit pyspark \
 Upload the script to GCS:
 
 ```bash
-TODO
+gsutil cp 06_spark_sql_big_query.py gs://ny-rides-viktorija-bucket/code/06_spark_sql_big_query.py
 ```
 
 Write results to big query ([docs](https://cloud.google.com/dataproc/docs/tutorials/bigquery-connector-spark-example#pyspark)):
@@ -115,13 +115,12 @@ Write results to big query ([docs](https://cloud.google.com/dataproc/docs/tutori
 ```bash
 gcloud dataproc jobs submit pyspark \
     --cluster=de-zoomcamp-cluster \
-    --region=europe-west6 \
-    --jars=gs://spark-lib/bigquery/spark-bigquery-latest_2.12.jar \
-    gs://dtc_data_lake_de-zoomcamp-nytaxi/code/06_spark_sql_big_query.py \
+    --region=europe-west2 \
+    gs://ny-rides-viktorija-bucket/code/06_spark_sql_big_query.py \
     -- \
-        --input_green=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/green/2020/*/ \
-        --input_yellow=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/yellow/2020/*/ \
-        --output=trips_data_all.reports-2020
+        --input_green=gs://ny-rides-viktorija-bucket/pq/green/2021/*/ \
+        --input_yellow=gs://ny-rides-viktorija-bucket/pq/yellow/2021/*/ \
+        --output=de_zoomcamp.reports-2021
 ```
 
 There can be issue with latest Spark version and the Big query connector. Download links to the jar file for respective Spark versions can be found at:
